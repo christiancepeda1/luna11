@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luna Vista Resort | The Vanguard of Luxury Leisure">
+    <meta name="author" content="Luna Vista Holdings Executive Concierge">
+    <meta name="keywords" content="Luxury, Resort, Private, Sanctuary, Cyberpunk, Elite">
+    <meta name="theme-color" content="#000510">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Luna Vista | Private Sanctuary">
+    <meta property="og:description" content="Redefining the boundaries of luxury.">
+    <meta property="og:type" content="website">
+    <title>Luna Vista | The Vanguard of Luxury Leisure</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Optima', 'Segoe UI', Tahoma, sans-serif; 
+        }
+
+        html { 
+            scroll-behavior: smooth; 
+            background-color: #000510;
+        }
+
+        body {
+            color: #ffffff;
+            line-height: 1.8;
+            overflow-x: hidden;
+            background: #000510;
+        }
+
+        nav {
+            width: 100%;
+            background: rgba(0, 5, 15, 0.98);
+            backdrop-filter: blur(25px);
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.15);
+            padding: 25px 0;
+            transition: 0.5s ease;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 60px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #00f2ff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            font-weight: 400;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav ul li a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 15px #ff00ff;
+        }
+
+        .btn-contact-nav {
+            border: 1px solid #00f2ff;
+            padding: 12px 30px;
+            margin-left: 20px;
+            background: transparent;
+        }
+
+        .btn-contact-nav:hover {
+            background: #00f2ff;
+            color: #000 !important;
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.5);
+        }
+
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://unsplash.com') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: heroEntrance 2.5s ease-out;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        #home h1 { 
+            font-size: clamp(3rem, 10vw, 7rem); 
+            color: #00f2ff; 
+            letter-spacing: 20px; 
+            text-transform: uppercase; 
+            text-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        #home p {
+            font-size: 1.4rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            animation: subTextSlide 3s ease;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 1px;
+            background: #ff00ff;
+            margin: 25px auto;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+
+        #images { 
+            padding: 160px 10% 120px; 
+            background: #000510; 
+        }
+
+        #images h2 { 
+            text-align: center;
+            margin-bottom: 100px; 
+            color: #ff00ff; 
+            letter-spacing: 12px; 
+            text-transform: uppercase; 
+            font-weight: 300;
+            font-size: 2.8rem;
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 50px; 
+        }
+        
+        .item { 
+            position: relative; 
+            overflow: hidden; 
+            height: 600px; 
+            border: 1px solid rgba(0, 242, 255, 0.1); 
+            background: #010c1f;
+        }
+
+        .item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: 1.5s cubic-bezier(0.2, 1, 0.3, 1); 
+            filter: brightness(0.3) grayscale(0.2); 
+        }
+
+        .item:hover img { 
+            transform: scale(1.1); 
+            filter: brightness(0.8) grayscale(0); 
+        }
+        
+        .item-text {
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            right: 50px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .item-text h3 { 
+            color: #00f2ff; 
+            font-size: 2rem; 
+            text-transform: uppercase; 
+            letter-spacing: 6px; 
+            margin-bottom: 20px; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .item-text p { 
+            font-size: 1.1rem; 
+            color: #ffffff; 
+            opacity: 0; 
+            transform: translateY(30px);
+            transition: 0.8s ease;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .item:hover .item-text p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #amenities {
+            padding: 150px 10%;
+            background: rgba(0, 242, 255, 0.02);
+            border-top: 1px solid rgba(255, 0, 255, 0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+        }
+
+        .amenity-card {
+            padding: 80px 40px;
+            background: rgba(0, 5, 15, 0.4);
+            border: 1px solid rgba(0, 242, 255, 0.05);
+            text-align: center;
+            transition: 0.6s ease;
+        }
+
+        .amenity-card:hover {
+            border-color: #ff00ff;
+            background: rgba(255, 0, 255, 0.03);
+            transform: translateY(-15px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .amenity-card h4 {
+            color: #00f2ff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 25px;
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        .amenity-card p {
+            font-size: 1rem;
+            color: #cbd5e1;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        #about { 
+            padding: 220px 15%; 
+            text-align: center; 
+            background: linear-gradient(180deg, #000510, #000c24); 
+        }
+
+        #about h1 { 
+            color: #ff00ff; 
+            margin-bottom: 70px; 
+            letter-spacing: 15px; 
+            text-transform: uppercase; 
+            font-weight: 300; 
+            font-size: 3.8rem;
+            text-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+        }
+
+        #about p { 
+            font-size: 1.4rem; 
+            line-height: 2.6; 
+            color: #e2e8f0; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        #contact { 
+            padding: 200px 10%; 
+            background: #000510; 
+            text-align: center; 
+            border-top: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        #contact h2 { 
+            color: #00f2ff; 
+            margin-bottom: 40px; 
+            letter-spacing: 12px; 
+            text-transform: uppercase; 
+            font-weight: 300; 
+            font-size: 2.5rem;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 60px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .contact-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+        }
+
+        .btn-submit {
+            padding: 20px 40px;
+            background: transparent;
+            border: 1px solid #ff00ff;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            cursor: pointer;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            font-size: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #ff00ff;
+            color: #000;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+        }
+
+        footer { 
+            padding: 150px 10% 80px; 
+            background: #000208;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-col h5 {
+            color: #00f2ff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 45px;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 22px; }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: 0.5s;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-col ul li a:hover { 
+            color: #ff00ff; 
+            padding-left: 12px;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+
+        .legal-row {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 100px;
+            opacity: 0.3;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        @keyframes heroEntrance {
+            from { opacity: 0; transform: scale(1.1); filter: blur(10px); }
+            to { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+
+        @keyframes subTextSlide {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media(max-width: 1200px) {
+            #about { padding: 150px 10%; }
+            #home h1 { font-size: 5rem; letter-spacing: 15px; }
+        }
+
+        @media(max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            #images { padding: 120px 5%; }
+            #contact { padding: 120px 5%; }
+            #about h1 { font-size: 2.8rem; letter-spacing: 8px; }
+            .contact-container { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="top-nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#images">Images</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact" class="btn-contact-nav">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <h1>Luna Vista</h1>
+        <p>The Future of Private Sanctuary</p>
+        <div class="decorative-line"></div>
+    </header>
+
+    <main>
+        <section id="images">
+            <h2>Executive Portfolio</h2>
+            <div class="grid">
+                <article class="item">
+                    <img src="https://via.placeholder.com/500x600?text=Zenith+Atrium" alt="Resort Architecture">
+                    <div class="item-text">
+                        <h3>Zenith Atrium</h3>
+                        <p>Structural innovation meeting the pinnacle of serenity and design.</p>
+                    </div>
+                </article>
+                <article class="item">
+                    <img src="https://via.placeholder.com/500x600?text=Oceanic+Horizon" alt="Oceanic Design">
+                    <div class="item-text">
+                        <h3>Oceanic Horizon</h3>
+                        <p>Bespoke glass sanctuaries featuring infinite coastal vistas and privacy.</p>
+                    </div>
+                </article>
+                <article class="item">
+                    <img src="https://via.placeholder.com/500x600?text=Imperial+Suite" alt="Imperial Accommodations">
+                    <div class="item-text">
+                        <h3>Imperial Suite</h3>
+                        <p>Designed exclusively for the requirements of the global executive elite.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="amenities">
+            <div class="amenity-card">
+                <h4>Private Aviation</h4>
+                <p>Seamless global transit with encrypted flight coordinates and private hangar access.</p>
+            </div>
+            <div class="amenity-card">
+                <h4>Bespoke Culinary</h4>
+                <p>Michelin-tier gastronomy tailored to your physiological profile and seasonal preferences.</p>
+            </div>
+            <div class="amenity-card">
+                <h4>Neural Wellness</h4>
+                <p>Advanced bio-rejuvenation systems designed for total cognitive and physical restoration.</p>
+            </div>
+            <div class="amenity-card">
+                <h4>Quantum Security</h4>
+                <p>Military-grade encryption and 24/7 private security ensures absolute peace of mind.</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <h1>Formal Narrative</h1>
+            <p>
+                Luna Vista Resort represents the pinnacle of modern architectural achievement, harmoniously 
+                integrated within a pristine tropical ecosystem. We provide an unparalleled sanctuary for 
+                discerning individuals who demand the intersection of cutting-edge innovation and 
+                absolute tranquility. Our commitment is to offer a bespoke experience that redefines 
+                the traditional boundaries of luxury, ensuring every moment is curated with surgical 
+                precision for our esteemed guests and global delegates.
+            </p>
+        </section>
+
+        <section id="contact">
+            <h2>Establish Connection</h2>
+            <div class="contact-container">
+                <form onsubmit="event.preventDefault(); alert('Inquiry Transmitted Successfully.');">
+                    <div class="input-group">
+                        <input type="text" placeholder="FULL LEGAL NAME" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" placeholder="SECURE EMAIL ADDRESS" required>
+                    </div>
+                    <div class="input-group">
+                        <textarea placeholder="NATURE OF INQUIRY" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Initialize Submission</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-col">
+            <h5>Resources</h5>
+            <ul>
+                <li><a href="#">Residency Portal</a></li>
+                <li><a href="#">Visual Assets</a></li>
+                <li><a href="#">Press Relations</a></li>
+                <li><a href="#">Concierge Access</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h5>Social Presence</h5>
+            <ul>
+                <li><a href="#">Instagram / Aesthetics</a></li>
+                <li><a href="#">X / Communications</a></li>
+                <li><a href="#">LinkedIn / Enterprise</a></li>
+                <li><a href="#">Vimeo / Cinematic</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h5>Legal Framework</h5>
+            <ul>
+                <li><a href="#">Privacy Protocol</a></li>
+                <li><a href="#">Terms of Residency</a></li>
+                <li><a href="#">Security Systems</a></li>
+                <li><a href="#">GDPR Compliance</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h5>Global Hubs</h5>
+            <ul>
+                <li><a href="#">Singapore Central</a></li>
+                <li><a href="#">Zurich Executive</a></li>
+                <li><a href="#">Tokyo District</a></li>
+                <li><a href="#">New York Hub</a></li>
+            </ul>
+        </div>
+        <div class="legal-row">
+            &copy; 2026 LUNA VISTA HOLDINGS. THE VANGUARD OF LUXURY. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+</body>
+</html>
